@@ -72,3 +72,33 @@ const form = document.querySelector("form");
 ¿Tengo un arreglo? ¿Algo diferente? ¿Cómo le hago para implementar metodos de arreglo en otras cosas que no son arreglos?
 
 2. La solucion se tiene que hacer **con ES6** con los temas vistos en clase.
+
+
+# Mi readme
+
+1. Recibir elemento DOM
+- Jalar el elemento de html y pasarlo como argumento en la funcion donde se va a  armar la logica
+element.getElementById(el elemento es el form completo)
+
+2. Validar fecha
+- que no esté vacio
+- que el numero sea futuro
+- que sean dos digitos de año y dos de mes
+- que sean solo numeros
+- que no sean numeros negativos
+- el mes no puede ser mayor a 12
+
+3. Codigo de verificacion
+- que no esté vacio
+- que sean solo 3 digitos
+- que sean solo numeros
+- que sean numeros positivos
+- que sean del 100 al 199
+
+4. Validar nombre completo
+- que sea string
+- mayusculas y minusculas
+- no sea string vacio
+- minimo 2 palabras
+- no empiece con espacios (trim)
+- cada palabra maximo con 30 caracteres
