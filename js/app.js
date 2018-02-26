@@ -2,7 +2,7 @@ const form = document.getElementById("form");
 
 form.addEventListener("submit", e => {
     e.preventDefault();
-    if (validateCardDetails(form)) {
+    if (validateCardDetails(form) == true) {
         console.log("datos válidos");
     } else {
         console.log("datos inválidos");
@@ -14,7 +14,7 @@ const validateCard = luhn => {
     //5499490527099139(numero de tarjeta para comprobar función)
     if (luhn.length < 16 || luhn == '' || luhn == ' ') { //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
         //console.log("num false")
-        return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
+        //return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
     } else {
         const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
         const evenNumber = numberCardInverse.map((element, index) => { //Se utiliza metodo map para iterar el arreglo de elementos, obteniendo elemento e indice
@@ -39,13 +39,13 @@ const validateCard = luhn => {
         if (sumEvenOdd % 10 === 0) { //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
             //console.log("suma pares con impares", sumEvenOdd)
             console.log('Tu tarjeta es válida'); //Si el residuo de dividirlo entre 10 es 0
-            return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 si es 0
+            luhn.className = "success";
             return true;
         } else {
             //console.log("suma pares con impares else", sumEvenOdd)
-            console.log('Tu tarjeta es inválida'); //Si el residuo de dividirlo entre 10 es 0
-            return borderColor = document.getElementById("cn").style.borderColor = "#f73131"; //Si el residuo de dividirlo entre 10 no es 0
-            //return false;
+            //console.log('Tu tarjeta es inválida'); //Si el residuo de dividirlo entre 10 es 0
+            luhn.className = "error";
+            return false;
         };
     };
 };
@@ -54,22 +54,19 @@ const validateCard = luhn => {
 const validateDate = number => {
     let month = number.substring(0, 2);
     let year = number.substring(2, 4);
-    console.log("number", month, year);
+    //console.log("number", month, year);
     let numberDate = [];
     numberDate.push(month);
     numberDate.push(year);
-    console.log("monthyear", numberDate);
-    let numberDateMonth = numberDate[0];
-    let numberDateYear = numberDate[1];
-    console.log("numberdate", number);
-    if (number < 10000 && number > 999) {
-        console.log("date true");
-        //return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d";
-        //return true;
+    //console.log("monthyear", numberDate);
+    if (numberDate[0] < 100 && numberDate[1] > 9 && numberDate[0] < 100 && numberDate[1] > 9) {
+        //console.log("date true");
+        numberDate.className = "success"
+        return true;
     } else {
-        console.log("date false");
-        //return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
-        //return false;
+        //console.log("date false");
+        numberDate.className = "error"
+        return false;
     };
 
 };
@@ -77,12 +74,12 @@ const validateDate = number => {
 //funcion para validar cvv
 const validateCvv = number => {
     if (number < 1000 && number > 99) {
-        console.log("cvv true");
-        return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d";
+        //console.log("cvv true");
+        number.className = "success"
         return true;
     } else {
-        console.log("cvv false");
-        return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
+        //console.log("cvv false");
+        number.className = "error"
         return false;
     };
 };
@@ -90,29 +87,30 @@ const validateCvv = number => {
 //funcion para validar nombre
 const validateName = string => {
     const alphabeth = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
     let name = string.toLowerCase();
     const array = name.split(' ');
-    console.log("array", array);
+    //console.log("array", array);
     for (i = 0; i < name.length; i++) {
         if (array !== "" && array.length > 2 && array.length < 4) {
             string.className = 'success';
-            console.log('nametrue');
+            //console.log('nametrue');
+            name.className = "success";
             return true;
         } else if (name.length >= 30) {
-            console.log("si entra")
+            //console.log("si entra")
+            name.className = "success";
             return true;
         } else if (alphabeth.indexOf(name.charAt(i), 0) != -1) {
-            console.log("si entra")
+            //console.log("si entra")
+            name.className = "success";
             return true;
         } else {
             string.className = 'error';
-            console.log('name false');
+            //console.log('name false');
+            name.className = "error";
             return false;
         };
-
-    }
-
+    };
 };
 
 const validateCardDetails = element => {
@@ -132,11 +130,14 @@ const validateCardDetails = element => {
     validateDate(valueDate);
     validateCvv(valueCvv);
     validateName(valueName);
-    if (validateCard == true && validateDate == true && validateCvv == true && validateName == true) {
-        console.log("todo valido")
+    //console.log('dta', validateCard(valueCard), validateDate(valueDate), validateCvv(valueCvv), validateName(valueName))
+    if (validateCard(valueCard) == true && validateDate(valueDate) == true && validateCvv(valueCvv) == true && validateName(valueName) == true) {
+        return true;
+        //console.log("todo valido")
     } else {
-        console.log("todo invalido")
-    }
+        return false;
+        //console.log("todo invalido")
+    };
 };
 
 validateCardDetails(form);
