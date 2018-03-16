@@ -12,10 +12,7 @@ form.addEventListener("submit", e => {
 //funcion para validar el numero de la tarjeta
 const validateCard = luhn => {
     //5499490527099139(numero de tarjeta para comprobar función)
-    //4398368860712556
     if (luhn.length < 16 || luhn == '' || luhn == ' ') { //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
-        //console.log("num false")
-        //return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
     } else {
         const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
         //console.log("reverse", numberCardInverse);
@@ -50,26 +47,26 @@ const validateCard = luhn => {
 
 //funcion para validar fecha
 const validateDate = number => {
-  const month = number.slice(0, 2);
-  const year = number.slice(3, 5);
+    const month = number.slice(0, 2);
+    const year = number.slice(3, 5);
 
-  const numberMonth = parseInt(month);
-  const numberYear = parseInt(year);
+    const numberMonth = parseInt(month);
+    const numberYear = parseInt(year);
 
     if (numberMonth < 100 && numberMonth > 9 && numberYear < 100 && numberYear > 9) {
         console.log("date true");
-        //year.className = "success"
+        number.style.backgroundColor = "blue";
         return true;
     } else {
         console.log("date false");
-        //year.className = "error"
+        number.style.backgroundColor = "red";
         return false;
     };
 };
 
 //funcion para validar cvv
 const validateCvv = number => {
-    if (number < 1000 && number > 99) {
+    if (number >= 000 && number < 1000) {
         console.log("cvv true");
         number.className = "success"
         return true;
@@ -137,5 +134,3 @@ const validateCardDetails = element => {
         console.log("todo invalido")
     };
 };
-
-//validateCardDetails(form);
