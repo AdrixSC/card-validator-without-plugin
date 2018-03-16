@@ -3,9 +3,9 @@ const form = document.getElementById("form");
 form.addEventListener("submit", e => {
     e.preventDefault();
     if (validateCardDetails(form) == true) {
-        console.log("Todos los datos son válidos");
+        console.log("Datos de tarjeta válidos");
     } else {
-        console.log("Hay datos inválidos");
+        console.log("Datos de tarjeta inválidos");
     };
 });
 
