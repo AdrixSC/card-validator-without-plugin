@@ -55,11 +55,11 @@ const validateDate = number => {
 
     if (numberMonth < 100 && numberMonth > 9 && numberYear < 100 && numberYear > 9) {
         console.log("date true");
-        number.style.backgroundColor = "blue";
+        //number.style.backgroundColor = "blue";
         return true;
     } else {
         console.log("date false");
-        number.style.backgroundColor = "red";
+        //number.style.backgroundColor = "red";
         return false;
     };
 };
@@ -82,7 +82,6 @@ const validateName = string => {
     const alphabeth = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     let name = string.toLowerCase();
     const array = name.split(' ');
-    //console.log("array", array);
     for (i = 0; i < name.length; i++) {
         if (array !== "" && array.length > 2 && array.length < 4) {
             console.log('name true');
@@ -91,7 +90,6 @@ const validateName = string => {
             return true;
         } else if (name.length >= 30) {
             console.log('name true');
-            //console.log("si entra")
             name.className = "success";
             return true;
         } else if (alphabeth.indexOf(name.charAt(i), 0) != -1) {
@@ -111,21 +109,15 @@ const validateName = string => {
 const validateCardDetails = element => {
     //sacando el valor de los inputs
     let array = Array.from(element)
-        //console.log(array);
     const valueCard = array[0].value;
-    //console.log(valueCard);
     const valueDate = array[1].value;
-    //console.log(valueDate);
     const valueCvv = array[2].value;
-    //console.log(valueCvv);
     const valueName = array[3].value;
-    //console.log(valueName);
     //llamando las funciones
     validateCard(valueCard);
     validateDate(valueDate);
     validateCvv(valueCvv);
     validateName(valueName);
-    //console.log('dta', validateCard(valueCard), validateDate(valueDate), validateCvv(valueCvv), validateName(valueName))
     if (validateCard(valueCard) == true && validateDate(valueDate) == true && validateCvv(valueCvv) == true && validateName(valueName) == true) {
         return true;
         console.log("todo valido")
